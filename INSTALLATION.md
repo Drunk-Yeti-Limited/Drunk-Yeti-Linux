@@ -1,6 +1,6 @@
 # Live session and VM instructions
 
-The integration preview ISO has been built. Public binary upload is pending; these instructions apply once both parts are available in a release. This image starts a live session and does not install Linux to disk.
+The integration preview ISO is available in the [public pre-release](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/integration-preview-2026-10-26). This image starts a live session and does not install Linux to disk.
 
 ## Assemble the download
 
@@ -20,7 +20,7 @@ Select **Live system (amd64)** and press Enter in the boot menu. A boot menu alo
 
 ## Testing status
 
-The initial automated BIOS check reached the boot menu. Actual desktop and UEFI startup are still being checked. Package management, network, audio, graphics, account sign-in and all creative-app export paths need release acceptance. Start with a disposable VM; physical-hardware installation is not supported by this preview.
+The corrected automated BIOS check reached KDE's desktop and welcome screen at 300 seconds. Yeti shell autostart is not established by that capture; UEFI startup is untested. Package management, network, audio, graphics, account sign-in and all creative-app export paths need release acceptance. Start with a disposable VM; physical-hardware installation is not supported by this preview.
 
 ## Maintainers
 

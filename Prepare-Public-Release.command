@@ -50,7 +50,6 @@ gh release create "$tag" --repo "$repository" --draft --prerelease \
   --title 'Drunk Yeti Linux — Integration Preview 2026-10-26' \
   --notes-file BUILD-STATUS.md \
   "$work_dir/"*.part01 "$work_dir/"*.part02 \
-  Assemble-ISO.command SHA256SUMS release-manifest.json \
-  "$work_dir/download/build.log"
+  Assemble-ISO.command SHA256SUMS release-manifest.json
 echo 'Uploaded to a draft pre-release. Review assets and boot evidence before publishing.'
 gh release view "$tag" --repo "$repository"
