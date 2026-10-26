@@ -8,6 +8,10 @@ A useful Linux desktop with an optional game world, desktop companion and creati
 
 > This is a live-session development preview, not the finished 1.0 release. There is no disk installer or configured persistence. Save your work outside the live session before shutting down.
 
+## New autostart build status
+
+A newer candidate was compiled successfully from source `c94989f` in build `40387571504`, and its autostart staging test passed. Its first boot-test runner timed out during QEMU installation, before the VM started. A boot-only retry (`40393334355`) is in progress with a longer setup budget. **Yeti autostart in the rebuilt ISO is not yet verified.** The download below remains the earlier published preview.
+
 ## Actual boot screenshots
 
 These captures come from the BIOS VM inspection of the released ISO (run `40379229619`). They show the current image, not concept artwork.
@@ -104,6 +108,31 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 | Installer, persistence, native ARM ISO | Not included |
 
 This build combines the recovered RC1 core with newer integrations. The complete earlier overhaul has not been recovered. See [BUILD-STATUS.md](BUILD-STATUS.md) and [release acceptance](RELEASE-CHECKLIST.md) for the full evidence and limitations.
+
+## Check or restart the Yeti shell
+
+In a running live desktop, open **Konsole** from the application menu. To try the shell manually:
+
+```sh
+drunk-yeti-playspace --distro-session
+```
+
+Read its startup log with:
+
+```sh
+tail -n 50 ~/.local/state/DrunkYetiPlaySpace/startup.log
+```
+
+The rebuilt autostart candidate also includes a user service. On that candidate, inspect or retry it with:
+
+```sh
+systemctl --user status drunk-yeti-shell.service --no-pager
+journalctl --user -u drunk-yeti-shell.service -b --no-pager -n 50
+systemctl --user reset-failed drunk-yeti-shell.service
+systemctl --user start drunk-yeti-shell.service
+```
+
+Run these as the desktop user, without `sudo`. The original public preview does not include this new service. Closing Yeti normally leaves the KDE desktop available.
 
 ## Troubleshooting
 
