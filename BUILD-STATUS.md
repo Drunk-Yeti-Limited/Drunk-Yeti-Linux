@@ -1,5 +1,31 @@
 # Build evidence — 2026-10-26
 
+## Rebuilt autostart candidate
+
+| Check | Result |
+| --- | --- |
+| Source revision | `c94989fcc2984516338f66048875418006663ca7` |
+| ISO compilation | Passed; build run `40387571504`, ISO job `121799824182` |
+| Autostart staging fixture | Passed in the ISO build |
+| ISO checksum after artifact download | Passed in boot-only run `40393334355` |
+| Initial chained boot attempt | Timed out during QEMU package download before VM launch; no screenshots |
+| Boot-only retry | Capture workflow completed; run `40393334355`, harness `1e5bc7a` |
+| Linux startup | Visible console; live-config finished and SDDM started by the 180-second capture |
+| Graphical desktop | **Acceptance not passed:** black screen with pointer at 300 seconds; black at 600 seconds |
+| Yeti autostart | **Unverified:** neither Yeti nor KDE appears in the later captures |
+| Startup-log collection | Attempted through Konsole; resulting image is black, with no readable log |
+| Public replacement | Not published; the original public release remains unchanged |
+
+The test used Q35/BIOS, 4 GB RAM, 2 vCPUs, standard VGA and no network. The harness selects KVM when accessible, otherwise Nehalem emulation. These captures do not distinguish a display/session problem from an application-startup problem. No normal-user sandbox override was introduced.
+
+The first runner's slow downloads exhausted its 25-minute budget. Both boot workflows now allow 45 minutes and install QEMU/xorriso without optional recommended packages. The retry completed, but a successful image-capture job is not successful desktop acceptance.
+
+[New screenshots and provenance](docs/screenshots/README.md). Artifact `12686781195`, ZIP SHA256 `ed1e1ef0ab5c72ede92ba4d88367d2c222bed7558a2e2a0692a79d45d2b80b0c`; downloaded and verified before conversion to PNG.
+
+Next diagnostic work: obtain guest display-manager/session journals and the user service status through a working console, then repeat normal-user graphical acceptance before replacing the public ISO.
+
+## Published preview — earlier image
+
 | Check | Result |
 | --- | --- |
 | Debian/KDE live ISO build | Passed, run 40374303793 |

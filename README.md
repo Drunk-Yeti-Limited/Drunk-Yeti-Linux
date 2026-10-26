@@ -8,13 +8,27 @@ A useful Linux desktop with an optional game world, desktop companion and creati
 
 > This is a live-session development preview, not the finished 1.0 release. There is no disk installer or configured persistence. Save your work outside the live session before shutting down.
 
-## New autostart build status
+## Latest test: rebuilt autostart candidate
 
-A newer candidate was compiled successfully from source `c94989f` in build `40387571504`, and its autostart staging test passed. Its first boot-test runner timed out during QEMU installation, before the VM started. A boot-only retry (`40393334355`) is in progress with a longer setup budget. **Yeti autostart in the rebuilt ISO is not yet verified.** The download below remains the earlier published preview.
+**The candidate compiled, but did not pass desktop acceptance in the new VM test.** Autostart staging and ISO checksum verification passed. Linux started and SDDM reported started at 180 seconds, but the 300-second capture shows a black screen with a pointer; the 600-second capture is black. Neither KDE nor Yeti is visible. The attempted startup-log capture is also black, so it does not identify the cause.
 
-## Actual boot screenshots
+The capture workflow completed successfully; that means it collected images, **not** that the desktop passed. Yeti autostart remains unverified. The public download below is still the earlier preview, not this candidate.
 
-These captures come from the BIOS VM inspection of the released ISO (run `40379229619`). They show the current image, not concept artwork.
+### New candidate boot menu
+
+![Rebuilt candidate's Debian 13 live boot menu, built October 26 at 19:43 UTC](docs/screenshots/candidate-boot-menu.png)
+
+### New candidate Linux startup — 180 seconds
+
+![Candidate Linux console showing completed live configuration and SDDM started at 180 seconds](docs/screenshots/candidate-linux-startup.png)
+
+[View the black-screen capture at 300 seconds](docs/screenshots/candidate-black-screen-300s.png) · [600-second capture](docs/screenshots/candidate-black-screen-600s.png) · [Screenshot provenance](docs/screenshots/README.md)
+
+Tested ISO: source `c94989f`, build `40387571504`. Boot inspection: `40393334355`. VM: BIOS, 4 GB RAM, 2 vCPUs, no network. These results do not establish hardware, UEFI or online-feature acceptance.
+
+## Earlier public-release screenshots
+
+These captures come from the BIOS VM inspection of the released ISO (run `40379229619`). They show the earlier downloadable release, not the rebuilt candidate above.
 
 ### Boot menu
 
@@ -100,7 +114,7 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 | --- | --- |
 | ISO build and reassembly | Passed; full ISO and part checksums verified |
 | BIOS desktop boot | KDE desktop reached in the automated VM test |
-| Yeti shell autostart | Unverified; not visible in the final capture |
+| Yeti shell autostart | Unverified; the rebuilt candidate's VM capture did not reach a visible desktop |
 | Creative apps and Makers | Some launchers and Linux exports remain unfinished |
 | Desktop Buddy | Full behavior parity remains incomplete |
 | Accounts and owned themes | Live sign-in, purchases, switching and revocation need end-to-end testing |
@@ -141,11 +155,12 @@ Run these as the desktop user, without `sudo`. The original public preview does 
 - **Checksum mismatch:** do not boot the file. Download the affected part again. On macOS/Linux the script identifies a mismatched part.
 - **Existing ISO differs:** move the old output aside and rerun assembly.
 - **Still at the boot menu:** select Live system and press Enter. Allow several minutes for startup.
-- **Only KDE appears:** that matches the current captured boot evidence; the custom Yeti shell still requires autostart diagnosis.
+- **Only KDE appears on the public preview:** that matches its recorded boot evidence. Use the startup commands above to inspect Yeti.
+- **Black screen on the rebuilt candidate:** the latest VM test reproduced this. Desktop acceptance is blocked; the available captures do not identify the cause. Do not treat the green capture-workflow status as proof of a working desktop.
 - **Files disappear after shutdown:** this is a live session without configured persistence. Save important files outside it before shutdown.
 
 ## Repository and screenshot provenance
 
 This public repository contains download guidance, screenshots, checksums and release assets. Application development source remains in the private `Drunk-Yeti-Limited/DrunkYetiPlaySpace-Source` repository.
 
-The ISO was built from source revision `f06555ca6613db653b36d195c6c1f5e2608e6a81`, build run `40374303793`. The screenshots were recovered from boot inspection artifact `12678283075` (run `40379229619`); original PPM captures were converted losslessly to PNG without changing their contents.
+The earlier public-release ISO was built from source revision `f06555ca6613db653b36d195c6c1f5e2608e6a81`, build run `40374303793`. The screenshots were recovered from boot inspection artifact `12678283075` (run `40379229619`); original PPM captures were converted losslessly to PNG without changing their contents.
