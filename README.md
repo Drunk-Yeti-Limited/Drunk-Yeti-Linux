@@ -26,21 +26,13 @@ The capture workflow completed successfully; that means it collected images, **n
 
 Tested ISO: source `c94989f`, build `40387571504`. Boot inspection: `40393334355`. VM: BIOS, 4 GB RAM, 2 vCPUs, no network. These results do not establish hardware, UEFI or online-feature acceptance.
 
-## Earlier public-release screenshots
+## Yeti desktop direction
 
-These captures come from the BIOS VM inspection of the released ISO (run `40379229619`). They show the earlier downloadable release, not the rebuilt candidate above.
+The visible desktop must be Yeti branded, including the fallback desktop. New source defaults suppress the stock KDE Welcome Center and splash, and add the existing Yeti mascot wallpaper, navy/ice-blue/white colors, and Yeti launcher branding. KDE remains the underlying desktop infrastructure.
 
-### Boot menu
+**These defaults have passed staging checks and wallpaper rendering only. They are not yet included in the downloadable ISO or verified in a running graphical session.** The black-screen issue above remains unresolved.
 
-![Debian 13 amd64 live boot menu with Live system selected](docs/screenshots/boot-menu.png)
-
-Choose **Live system (amd64)** and press **Enter**.
-
-### KDE desktop
-
-![KDE Plasma desktop and Welcome Center reached by the preview ISO](docs/screenshots/kde-desktop.png)
-
-The automated test reached this desktop at 300 seconds. The custom Yeti shell is **not visible** in this capture; its autostart and complete desktop integration remain unverified. Actual boot time varies.
+The old stock-KDE capture is retained as [historical test evidence](docs/screenshots/kde-desktop.png), not as the intended Yeti experience. See [BUILD-STATUS.md](BUILD-STATUS.md) for the earlier release's results.
 
 ## Download and assemble
 
