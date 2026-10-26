@@ -1,17 +1,27 @@
-# Installation and VM guidance
+# Live session and VM instructions
 
-There is no installable release yet. Current work targets a Debian 13/KDE amd64 live image. It does not currently include a disk installer or configured persistence.
+The integration preview ISO has been built. Public binary upload is pending; these instructions apply once both parts are available in a release. This image starts a live session and does not install Linux to disk.
 
-## When an ISO is published
+## Assemble the download
 
-1. Download the ISO and its SHA256SUMS from the same GitHub Release.
-2. On Linux run `sha256sum -c SHA256SUMS`. On macOS run `shasum -a 256 NAME.iso` and compare the full digest with the manifest. A checksum detects corruption; it is not a digital signature.
-3. Test the live image in a disposable VM before using physical hardware. Never attach a disk containing important data to an untested image.
-4. Use the release's architecture and VM instructions. The planned amd64 image needs x86_64 emulation on Apple Silicon; ARM virtualization cannot boot it natively. No Apple Silicon ARM image is available.
-5. A live session is not installation. Saving changes across reboots needs a documented persistence setup, which remains unfinished.
+Download both `drunk-yeti-integration-preview-amd64.hybrid.iso.part01` and `.part02`, plus `Assemble-ISO.command`, into the same folder. Allow at least 8 GB free for the parts and assembled image. In Terminal, change to that folder and run:
 
-## Maintainer build requirements
+```sh
+bash Assemble-ISO.command
+```
 
-The image builder needs a disposable Debian 13 amd64 machine with root/mount capability, at least 60 GiB free space, and live-build, debootstrap, xorriso, squashfs-tools, grub-pc-bin, grub-efi-amd64-bin and mtools. Source payload, app dependencies and toolchain must be staged and verified first. Maintainers must complete BIOS and UEFI boot tests before attaching an ISO here.
+The script verifies both parts, joins them and verifies the complete image. It works with Linux `sha256sum` or macOS `shasum`. Do not boot an image if verification fails. Checksums detect corruption; they are not digital signatures.
 
-The current development container fails that preflight. There is no ISO download link to provide yet.
+## Apple Silicon
+
+Use an x86_64 **emulated** VM in UTM. ARM virtualization cannot boot this amd64 image. Select the assembled ISO as the VM's boot CD/DVD. Start with 4 GB RAM and two virtual CPU cores; these match the automated inspection configuration. Emulation performance on a Mac has not yet been measured.
+
+Select **Live system (amd64)** and press Enter in the boot menu. A boot menu alone does not establish a working desktop. The image has no disk installer or configured persistence: copy important projects outside the live session before shutting down.
+
+## Testing status
+
+The initial automated BIOS check reached the boot menu. Actual desktop and UEFI startup are still being checked. Package management, network, audio, graphics, account sign-in and all creative-app export paths need release acceptance. Start with a disposable VM; physical-hardware installation is not supported by this preview.
+
+## Maintainers
+
+The private source repository contains the automated Debian 13 live-build workflow. Build run 40374303793 produced the image from source f06555ca6613db653b36d195c6c1f5e2608e6a81. The build uses a disposable privileged Debian container on a GitHub runner. Package inventories are staged inside the image; retain the original build log alongside release evidence.
