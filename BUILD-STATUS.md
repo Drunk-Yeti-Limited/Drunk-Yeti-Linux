@@ -28,3 +28,7 @@ Native/model checks: 238 passed. Offscreen account/theme/atmosphere checks: 9 pa
 - Full Desktop Buddy behavior parity remains incomplete.
 - Real purchases, sign-in, account switching and entitlement revocation need end-to-end testing. Theme preferences never replace backend ownership checks.
 - Public binary upload failed because the upload environment supplied empty files despite verified nonempty local sources. Do not interpret an empty release draft as a downloadable ISO.
+
+## Maintainer upload fallback
+
+`Prepare-Public-Release.command` downloads the exact successful private build using an authenticated GitHub CLI, verifies the ISO, splits and verifies both parts, and uploads them with checksums and the build log to a **draft** pre-release in this public repository. Run it from a checkout of this repository on a machine with Python 3, GitHub CLI and at least 12 GB free. It does not publish the draft or overwrite an existing release. Review the boot evidence and assets before publishing. The build artifact expires on 2026-11-02; retain a verified local copy.
