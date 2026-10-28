@@ -2,39 +2,41 @@
 
 A useful Linux desktop with an optional game world, desktop companion and creative tools.
 
-**Development integration preview · Debian 13 / KDE · amd64 (x86_64) · October 26, 2026**
+**Development integration preview · Debian 13 · PlaySpace X11 session · amd64 (x86_64)**
 
 [Download the preview](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/integration-preview-2026-10-26) · [Detailed instructions](INSTALLATION.md) · [Build status](BUILD-STATUS.md)
 
 > This is a live-session development preview, not the finished 1.0 release. There is no disk installer or configured persistence. Save your work outside the live session before shutting down.
 
-## Latest test: rebuilt autostart candidate
+## Latest tested build: PlaySpace boots directly
 
-**The candidate compiled, but did not pass desktop acceptance in the new VM test.** Autostart staging and ISO checksum verification passed. Linux started and SDDM reported started at 180 seconds, but the 300-second capture shows a black screen with a pointer; the 600-second capture is black. Neither KDE nor Yeti is visible. The attempted startup-log capture is also black, so it does not identify the cause.
+**The rebuilt ISO reaches the PlaySpace interface in the BIOS VM test.** The actual ten-minute capture below shows the Yeti welcome screen and PlaySpace running. This replaces the earlier black-screen result for the rebuilt image.
 
-The capture workflow completed successfully; that means it collected images, **not** that the desktop passed. Yeti autostart remains unverified. The public download below is still the earlier preview, not this candidate.
+**Download status:** the public release linked below still contains the older October 26 KDE image. These screenshots document the newer private build, not the current public download. Publishing the tested replacement ISO remains pending.
 
-### New candidate boot menu
+### Running PlaySpace — ten minutes after boot
 
-![Rebuilt candidate's Debian 13 live boot menu, built October 26 at 19:43 UTC](docs/screenshots/candidate-boot-menu.png)
+![Actual rebuilt ISO running the Yeti welcome screen inside PlaySpace at 600 seconds](docs/screenshots/playspace-desktop-600s.png)
 
-### New candidate Linux startup — 180 seconds
+### Boot menu of the tested ISO
 
-![Candidate Linux console showing completed live configuration and SDDM started at 180 seconds](docs/screenshots/candidate-linux-startup.png)
+![Actual Debian live boot menu from the rebuilt PlaySpace ISO](docs/screenshots/playspace-boot-menu.png)
 
-[View the black-screen capture at 300 seconds](docs/screenshots/candidate-black-screen-300s.png) · [600-second capture](docs/screenshots/candidate-black-screen-600s.png) · [Screenshot provenance](docs/screenshots/README.md)
+The boot menu still displays Debian artwork; complete boot branding is not visually accepted. The session configuration selects PlaySpace X11, using KWin for windows without launching the Plasma desktop or offering KDE/GNOME sessions.
 
-Tested ISO: source `c94989f`, build `40387571504`. Boot inspection: `40393334355`. VM: BIOS, 4 GB RAM, 2 vCPUs, no network. These results do not establish hardware, UEFI or online-feature acceptance.
+ISO source: `f7622b2443fa2fef10fbf494191ad6c75012de29`; build and normal boot capture: [run 40430362637](https://github.com/Drunk-Yeti-Limited/DrunkYetiPlaySpace-Source/actions/runs/40430362637). A separate session check completed in [run 40432406032](https://github.com/Drunk-Yeti-Limited/DrunkYetiPlaySpace-Source/actions/runs/40432406032). These source-repository links require access.
+
+The normal capture is blank at 300 seconds and shows PlaySpace at 600 seconds; startup remains slow in this VM. This is boot evidence, not a full feature tour, hardware certification or UEFI acceptance. [Capture provenance and historical results](docs/screenshots/README.md).
 
 ## Yeti desktop direction
 
-The visible desktop must be Yeti branded, including the fallback desktop. New source defaults suppress the stock KDE Welcome Center and splash, and add the existing Yeti mascot wallpaper, navy/ice-blue/white colors, and Yeti launcher branding. KDE remains the underlying desktop infrastructure.
+PlaySpace is the only configured desktop session in the rebuilt image. Buddy retains its shared local profile and separate desktop-buddy mode. Live-session data still requires external saving because persistence is not configured.
 
-**These defaults have passed staging checks and wallpaper rendering only. They are not yet included in the downloadable ISO or verified in a running graphical session.** The black-screen issue above remains unresolved.
+Yeti branding is configured across the source, but each screen still needs visual acceptance. The screenshot above verifies the PlaySpace welcome interface; the stock Debian boot menu above shows that boot artwork still needs work.
 
-The old stock-KDE capture is retained as [historical test evidence](docs/screenshots/kde-desktop.png), not as the intended Yeti experience. See [BUILD-STATUS.md](BUILD-STATUS.md) for the earlier release's results.
+## Download and assemble — older public ISO
 
-## Download and assemble
+**These downloads are the earlier KDE preview, not the tested PlaySpace-only rebuild shown above.**
 
 The complete ISO is **3,959,422,976 bytes (about 3.96 GB)**. It is published as two parts because GitHub limits individual release assets to under 2 GiB. Both parts are required; neither part boots by itself.
 
@@ -105,8 +107,8 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 | Area | Current evidence |
 | --- | --- |
 | ISO build and reassembly | Passed; full ISO and part checksums verified |
-| BIOS desktop boot | KDE desktop reached in the automated VM test |
-| Yeti shell autostart | Unverified; the rebuilt candidate's VM capture did not reach a visible desktop |
+| BIOS desktop boot | New rebuild reaches PlaySpace at 600 seconds; older public download reaches KDE |
+| PlaySpace session startup | Visible in the rebuilt ISO's normal BIOS boot capture |
 | Creative apps and Makers | Some launchers and Linux exports remain unfinished |
 | Desktop Buddy | Full behavior parity remains incomplete |
 | Accounts and owned themes | Live sign-in, purchases, switching and revocation need end-to-end testing |
@@ -115,7 +117,7 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 
 This build combines the recovered RC1 core with newer integrations. The complete earlier overhaul has not been recovered. See [BUILD-STATUS.md](BUILD-STATUS.md) and [release acceptance](RELEASE-CHECKLIST.md) for the full evidence and limitations.
 
-## Check or restart the Yeti shell
+## Check or restart the Yeti shell — older public preview
 
 In a running live desktop, open **Konsole** from the application menu. To try the shell manually:
 
@@ -148,7 +150,7 @@ Run these as the desktop user, without `sudo`. The original public preview does 
 - **Existing ISO differs:** move the old output aside and rerun assembly.
 - **Still at the boot menu:** select Live system and press Enter. Allow several minutes for startup.
 - **Only KDE appears on the public preview:** that matches its recorded boot evidence. Use the startup commands above to inspect Yeti.
-- **Black screen on the rebuilt candidate:** the latest VM test reproduced this. Desktop acceptance is blocked; the available captures do not identify the cause. Do not treat the green capture-workflow status as proof of a working desktop.
+- **Blank screen during rebuilt-image startup:** the normal test remained blank at 300 seconds and reached PlaySpace by 600 seconds. Earlier failed images selected Plasma Wayland and hit graphics errors; the replacement selects PlaySpace X11. A persistent blank screen still needs guest-log diagnosis.
 - **Files disappear after shutdown:** this is a live session without configured persistence. Save important files outside it before shutdown.
 
 ## Repository and screenshot provenance

@@ -1,3 +1,28 @@
+# Rebuilt PlaySpace ISO screenshots — October 27, 2026
+
+These are actual QEMU BIOS VM captures from ISO build `40430362637`, source `f7622b2443fa2fef10fbf494191ad6c75012de29`. Original PPM captures were converted losslessly to PNG without cropping or retouching.
+
+| Image | Original | Observation |
+| --- | --- | --- |
+| [PlaySpace desktop](playspace-desktop-600s.png) | `600s.ppm` | PlaySpace and Yeti welcome interface visible ten minutes after Enter |
+| [Boot menu](playspace-boot-menu.png) | `boot-menu.ppm` | Debian 13 BIOS live menu; stock artwork still present |
+
+Normal boot artifact: `12702889016`, from [build/boot run 40430362637](https://github.com/Drunk-Yeti-Limited/DrunkYetiPlaySpace-Source/actions/runs/40430362637). Downloaded ZIP SHA-256 matched GitHub's published digest:
+
+```text
+f2fe182e60224c6dd90fe679159b10e2052ae4eb70fee36afe932b7047dbf035
+```
+
+VM: Q35/BIOS, 4 GB RAM, 2 vCPUs, standard VGA, no network; KVM when available, otherwise CPU emulation. The harness presses Enter at the boot menu and observes startup. The 300-second image is blank; the 600-second image visibly contains PlaySpace. The boot recording is sampled approximately every two seconds, with no audio; it is not a complete feature tour.
+
+The separate session-verification run `40432406032` completed successfully and produced artifact `12702668547`. That artifact is separate from the normal boot screenshots published here.
+
+The public release download still contains the older KDE preview. No UEFI, Secure Boot, physical-hardware or full app acceptance is implied by these images.
+
+---
+
+## Historical captures — superseded for the rebuilt image
+
 # Boot screenshot provenance — October 26, 2026
 
 The candidate captures are unedited QEMU screendumps from the rebuilt live ISO. Original PPM images are converted losslessly to PNG for GitHub.

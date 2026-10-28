@@ -1,3 +1,22 @@
+# Current boot evidence — PlaySpace rebuild
+
+**The rebuilt ISO reaches the PlaySpace interface in the normal BIOS VM boot test.** [See the actual screenshots](docs/screenshots/README.md).
+
+- ISO source: `f7622b2443fa2fef10fbf494191ad6c75012de29`.
+- Build and normal boot inspection: `40430362637`; both jobs completed successfully.
+- Normal capture: blank at 300 seconds; PlaySpace and Yeti welcome visible at 600 seconds.
+- Screenshot artifact: `12702889016`; downloaded ZIP digest verified against GitHub.
+- Separate session check: `40432406032`, completed successfully.
+- The repaired session selects PlaySpace X11 and removes the live-config Plasma override.
+- The boot menu still shows Debian artwork. Full branding acceptance, UEFI, hardware and full feature testing remain pending.
+- **Public replacement is still pending:** the October 26 release remains the older KDE ISO.
+
+The earlier black-screen diagnosis found Plasma Wayland selected instead of PlaySpace, with graphics initialization errors. That earlier result is retained below as historical evidence and does not describe the rebuilt image's final screenshot.
+
+---
+
+## Historical build notes
+
 # Build evidence — 2026-10-26
 
 ## Rebuilt autostart candidate
