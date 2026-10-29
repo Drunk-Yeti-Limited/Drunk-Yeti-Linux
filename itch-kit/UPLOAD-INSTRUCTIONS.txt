@@ -1,0 +1,23 @@
+Drunk Yeti PlaySpace Linux — itch.io upload kit
+
+Title: Drunk Yeti PlaySpace Linux
+Short description: A useful Linux desktop with a Yeti companion and optional alpine exploration. Live development preview.
+Suggested classification: Tools
+Project status: In development
+Pricing: Free (no payment configuration required)
+
+Browser upload:
+Upload PlaySpace-Itch-HTML.zip as an HTML/browser project. Its root contains index.html and assets/. Enable click-to-play and fullscreen. Use an approximately 1100 x 750 frame with scrolling. The page links to GitHub in a new tab; it does not emulate or boot the OS.
+
+Cover: cover.png
+Header/banner: header.png
+Actual screenshot: playspace-screenshot.png
+Description: itch-description.md (paste into the page description; use the editor's link tool as needed)
+
+Public repository:
+https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux
+
+Tested ISO release:
+https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/playspace-preview-2026-10-27
+
+Do not upload the .iso parts as browser code. They are already publicly hosted on GitHub. Do not present the banner illustration as an actual desktop screenshot. Keep the development-preview, no-installer, and no-persistence notices visible.
