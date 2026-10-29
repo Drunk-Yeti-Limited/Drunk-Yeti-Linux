@@ -1,26 +1,21 @@
 #!/bin/bash
 set -euo pipefail
 cd -- "$(dirname -- "$0")"
-checksum() {
-  if command -v sha256sum >/dev/null 2>&1; then sha256sum "$1" | awk '{print $1}';
-  else shasum -a 256 "$1" | awk '{print $1}'; fi
-}
+checksum() { if command -v sha256sum >/dev/null 2>&1; then sha256sum "$1" | awk '{print $1}'; else shasum -a 256 "$1" | awk '{print $1}'; fi; }
 test -f 'drunk-yeti-integration-preview-amd64.hybrid.iso.part01' || { echo 'Missing drunk-yeti-integration-preview-amd64.hybrid.iso.part01'; exit 1; }
-echo 'Checking drunk-yeti-integration-preview-amd64.hybrid.iso.part01'
-test "$(checksum 'drunk-yeti-integration-preview-amd64.hybrid.iso.part01')" = 'f33e0521d5f53a167909ec233e05ad2dc8e66bbf6af6f0de5469a5644c3ee151' || { echo 'Part checksum mismatch. Download it again.'; exit 1; }
+test "$(checksum 'drunk-yeti-integration-preview-amd64.hybrid.iso.part01')" = 'd2df6f09185ed02ead3dd8f4470bff4ac30a76e2f9cffccd2f9eef89eb1447c8' || { echo 'Part checksum mismatch'; exit 1; }
 test -f 'drunk-yeti-integration-preview-amd64.hybrid.iso.part02' || { echo 'Missing drunk-yeti-integration-preview-amd64.hybrid.iso.part02'; exit 1; }
-echo 'Checking drunk-yeti-integration-preview-amd64.hybrid.iso.part02'
-test "$(checksum 'drunk-yeti-integration-preview-amd64.hybrid.iso.part02')" = '1a5a4167c53b4bce441afdf7b8b25d6232645e2b32f09a3155836cae930daedf' || { echo 'Part checksum mismatch. Download it again.'; exit 1; }
+test "$(checksum 'drunk-yeti-integration-preview-amd64.hybrid.iso.part02')" = '452853c259a6a1e9cd843aaea2bce560c1ca1d7d75a6703266d9e1310c4cc448' || { echo 'Part checksum mismatch'; exit 1; }
 image='drunk-yeti-integration-preview-amd64.hybrid.iso'
-expected='166d1ff8fddd74cfb8d359fff39b1e5f1a066af59455ff3e8705a21fbda62c42'
+expected='ca7935534d004c8b35228606eba36c75621d3ced5f1da2b34c21623dfb8f0f04'
 if test -e "$image"; then
-  test "$(checksum "$image")" = "$expected" || { echo 'Existing ISO differs. Move it aside before retrying.'; exit 1; }
-  echo 'Existing ISO verified.'; exit 0
+ test "$(checksum "$image")" = "$expected" || { echo 'Existing ISO differs. Move it aside first.'; exit 1; }
+ echo 'Existing ISO verified.'; exit 0
 fi
 temp_image=$(mktemp './yeti-iso.XXXXXXXX')
 trap 'rm -f -- "$temp_image"' EXIT
 cat 'drunk-yeti-integration-preview-amd64.hybrid.iso.part01' 'drunk-yeti-integration-preview-amd64.hybrid.iso.part02' > "$temp_image"
-test "$(checksum "$temp_image")" = "$expected" || { echo 'ISO checksum mismatch.'; exit 1; }
+test "$(checksum "$temp_image")" = "$expected" || { echo 'ISO checksum mismatch'; exit 1; }
 mv -- "$temp_image" "$image"
 trap - EXIT
 echo "Verified ISO ready: $image"

@@ -17,7 +17,7 @@ VM: Q35/BIOS, 4 GB RAM, 2 vCPUs, standard VGA, no network; KVM when available, o
 
 The separate session-verification run `40432406032` completed successfully and produced artifact `12702668547`. That artifact is separate from the normal boot screenshots published here.
 
-The public release download still contains the older KDE preview. No UEFI, Secure Boot, physical-hardware or full app acceptance is implied by these images.
+The [public PlaySpace preview download](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/playspace-preview-2026-10-27) now contains this tested image. The older KDE preview remains under its original tag. No UEFI, Secure Boot, physical-hardware or full app acceptance is implied by these images.
 
 ---
 

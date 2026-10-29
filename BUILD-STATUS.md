@@ -9,7 +9,7 @@
 - Separate session check: `40432406032`, completed successfully.
 - The repaired session selects PlaySpace X11 and removes the live-config Plasma override.
 - The boot menu still shows Debian artwork. Full branding acceptance, UEFI, hardware and full feature testing remain pending.
-- **Public replacement is still pending:** the October 26 release remains the older KDE ISO.
+- **Public replacement published:** the tested image is available in [the PlaySpace preview release](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/playspace-preview-2026-10-27). Its two parts reassemble to the exact verified ISO. The October 26 KDE release is retained as historical.
 
 The earlier black-screen diagnosis found Plasma Wayland selected instead of PlaySpace, with graphics initialization errors. That earlier result is retained below as historical evidence and does not describe the rebuilt image's final screenshot.
 

@@ -4,7 +4,7 @@ A useful Linux desktop with an optional game world, desktop companion and creati
 
 **Development integration preview · Debian 13 · PlaySpace X11 session · amd64 (x86_64)**
 
-[Download the preview](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/integration-preview-2026-10-26) · [Detailed instructions](INSTALLATION.md) · [Build status](BUILD-STATUS.md)
+[Download the preview](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/playspace-preview-2026-10-27) · [Detailed instructions](INSTALLATION.md) · [Build status](BUILD-STATUS.md)
 
 > This is a live-session development preview, not the finished 1.0 release. There is no disk installer or configured persistence. Save your work outside the live session before shutting down.
 
@@ -12,7 +12,7 @@ A useful Linux desktop with an optional game world, desktop companion and creati
 
 **The rebuilt ISO reaches the PlaySpace interface in the BIOS VM test.** The actual ten-minute capture below shows the Yeti welcome screen and PlaySpace running. This replaces the earlier black-screen result for the rebuilt image.
 
-**Download status:** the public release linked below still contains the older October 26 KDE image. These screenshots document the newer private build, not the current public download. Publishing the tested replacement ISO remains pending.
+**Download status:** the public release linked below now contains this tested PlaySpace-only rebuild. Download both ISO parts and the assembly script from the new release; do not mix them with files from the earlier October 26 KDE release.
 
 ### Running PlaySpace — ten minutes after boot
 
@@ -34,20 +34,20 @@ PlaySpace is the only configured desktop session in the rebuilt image. Buddy ret
 
 Yeti branding is configured across the source, but each screen still needs visual acceptance. The screenshot above verifies the PlaySpace welcome interface; the stock Debian boot menu above shows that boot artwork still needs work.
 
-## Download and assemble — older public ISO
+## Download and assemble
 
-**These downloads are the earlier KDE preview, not the tested PlaySpace-only rebuild shown above.**
+**These downloads are the tested PlaySpace-only rebuild shown above.**
 
-The complete ISO is **3,959,422,976 bytes (about 3.96 GB)**. It is published as two parts because GitHub limits individual release assets to under 2 GiB. Both parts are required; neither part boots by itself.
+The complete ISO is **3,955,556,352 bytes (about 3.96 GB)**. It is published as two parts because GitHub limits individual release assets to under 2 GiB. Both parts are required; neither part boots by itself.
 
 1. Create an empty folder and allow **at least 8 GB of free space**.
 2. Download these three files into that same folder, retaining their exact names:
 
 | File | Download |
 | --- | --- |
-| ISO part 1 | [drunk-yeti-integration-preview-amd64.hybrid.iso.part01](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/integration-preview-2026-10-26/drunk-yeti-integration-preview-amd64.hybrid.iso.part01) |
-| ISO part 2 | [drunk-yeti-integration-preview-amd64.hybrid.iso.part02](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/integration-preview-2026-10-26/drunk-yeti-integration-preview-amd64.hybrid.iso.part02) |
-| Assembly script for macOS/Linux | [Assemble-ISO.command](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/integration-preview-2026-10-26/Assemble-ISO.command) |
+| ISO part 1 | [drunk-yeti-integration-preview-amd64.hybrid.iso.part01](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/playspace-preview-2026-10-27/drunk-yeti-integration-preview-amd64.hybrid.iso.part01) |
+| ISO part 2 | [drunk-yeti-integration-preview-amd64.hybrid.iso.part02](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/playspace-preview-2026-10-27/drunk-yeti-integration-preview-amd64.hybrid.iso.part02) |
+| Assembly script for macOS/Linux | [Assemble-ISO.command](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/playspace-preview-2026-10-27/Assemble-ISO.command) |
 
 3. Assemble using the instructions for your computer below.
 4. Boot the resulting `drunk-yeti-integration-preview-amd64.hybrid.iso` in a VM.
@@ -78,10 +78,10 @@ Compare the reported hash with the value below before booting. Use Command Promp
 ### Expected ISO checksum
 
 ```text
-166d1ff8fddd74cfb8d359fff39b1e5f1a066af59455ff3e8705a21fbda62c42
+ca7935534d004c8b35228606eba36c75621d3ced5f1da2b34c21623dfb8f0f04
 ```
 
-[SHA256SUMS](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/integration-preview-2026-10-26/SHA256SUMS) · [Exact file sizes and part hashes](release-manifest.json)
+[SHA256SUMS](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/download/playspace-preview-2026-10-27/SHA256SUMS) · [Exact file sizes and part hashes](release-manifest.json)
 
 Checksums detect corruption; they are not digital signatures.
 
@@ -107,7 +107,7 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 | Area | Current evidence |
 | --- | --- |
 | ISO build and reassembly | Passed; full ISO and part checksums verified |
-| BIOS desktop boot | New rebuild reaches PlaySpace at 600 seconds; older public download reaches KDE |
+| BIOS desktop boot | Published rebuild reaches PlaySpace at 600 seconds |
 | PlaySpace session startup | Visible in the rebuilt ISO's normal BIOS boot capture |
 | Creative apps and Makers | Some launchers and Linux exports remain unfinished |
 | Desktop Buddy | Full behavior parity remains incomplete |
@@ -117,30 +117,11 @@ Included work covers the Yeti desktop shell, account and owned-theme integration
 
 This build combines the recovered RC1 core with newer integrations. The complete earlier overhaul has not been recovered. See [BUILD-STATUS.md](BUILD-STATUS.md) and [release acceptance](RELEASE-CHECKLIST.md) for the full evidence and limitations.
 
-## Check or restart the Yeti shell — older public preview
+## Session behavior
 
-In a running live desktop, open **Konsole** from the application menu. To try the shell manually:
+The published rebuild selects the PlaySpace X11 session and uses KWin to manage windows without starting Plasma. Startup reached the visible PlaySpace welcome interface at 600 seconds in the normal BIOS VM test. A blank screen at five minutes occurred during that test, so allow several minutes for startup.
 
-```sh
-drunk-yeti-playspace --distro-session
-```
-
-Read its startup log with:
-
-```sh
-tail -n 50 ~/.local/state/DrunkYetiPlaySpace/startup.log
-```
-
-The rebuilt autostart candidate also includes a user service. On that candidate, inspect or retry it with:
-
-```sh
-systemctl --user status drunk-yeti-shell.service --no-pager
-journalctl --user -u drunk-yeti-shell.service -b --no-pager -n 50
-systemctl --user reset-failed drunk-yeti-shell.service
-systemctl --user start drunk-yeti-shell.service
-```
-
-Run these as the desktop user, without `sudo`. The original public preview does not include this new service. Closing Yeti normally leaves the KDE desktop available.
+The earlier KDE release remains available under its original October 26 tag for historical reference. Its user-service troubleshooting instructions do not describe the direct PlaySpace session.
 
 ## Troubleshooting
 
@@ -149,12 +130,14 @@ Run these as the desktop user, without `sudo`. The original public preview does 
 - **Checksum mismatch:** do not boot the file. Download the affected part again. On macOS/Linux the script identifies a mismatched part.
 - **Existing ISO differs:** move the old output aside and rerun assembly.
 - **Still at the boot menu:** select Live system and press Enter. Allow several minutes for startup.
-- **Only KDE appears on the public preview:** that matches its recorded boot evidence. Use the startup commands above to inspect Yeti.
+- **Only KDE appears:** verify you downloaded both parts from the new PlaySpace release, not the earlier October 26 release. Do not mix release files.
 - **Blank screen during rebuilt-image startup:** the normal test remained blank at 300 seconds and reached PlaySpace by 600 seconds. Earlier failed images selected Plasma Wayland and hit graphics errors; the replacement selects PlaySpace X11. A persistent blank screen still needs guest-log diagnosis.
 - **Files disappear after shutdown:** this is a live session without configured persistence. Save important files outside it before shutdown.
 
 ## Repository and screenshot provenance
 
 This public repository contains download guidance, screenshots, checksums and release assets. Application development source remains in the private `Drunk-Yeti-Limited/DrunkYetiPlaySpace-Source` repository.
+
+The current public ISO is built from source `f7622b2443fa2fef10fbf494191ad6c75012de29`, run `40430362637`, with SHA-256 `ca7935534d004c8b35228606eba36c75621d3ced5f1da2b34c21623dfb8f0f04`. The public release parts and supporting files are checked against their published asset digests.
 
 The earlier public-release ISO was built from source revision `f06555ca6613db653b36d195c6c1f5e2608e6a81`, build run `40374303793`. The screenshots were recovered from boot inspection artifact `12678283075` (run `40379229619`); original PPM captures were converted losslessly to PNG without changing their contents.

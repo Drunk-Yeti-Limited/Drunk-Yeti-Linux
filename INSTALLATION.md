@@ -1,6 +1,6 @@
 # Live session and VM instructions
 
-The integration preview ISO is available in the [public pre-release](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/integration-preview-2026-10-26). This image starts a live session and does not install Linux to disk.
+The integration preview ISO is available in the [public pre-release](https://github.com/Drunk-Yeti-Limited/Drunk-Yeti-Linux/releases/tag/playspace-preview-2026-10-27). This image starts a live session and does not install Linux to disk.
 
 ## Assemble the download
 
@@ -20,8 +20,8 @@ Select **Live system (amd64)** and press Enter in the boot menu. A boot menu alo
 
 ## Testing status
 
-The corrected automated BIOS check reached KDE's desktop and welcome screen at 300 seconds. Yeti shell autostart is not established by that capture; UEFI startup is untested. Package management, network, audio, graphics, account sign-in and all creative-app export paths need release acceptance. Start with a disposable VM; physical-hardware installation is not supported by this preview.
+The rebuilt image reaches PlaySpace directly in the automated BIOS check, with the Yeti welcome interface visible at 600 seconds. The capture was still blank at 300 seconds. Plasma does not start as the desktop session. UEFI startup is untested. Package management, network, audio, graphics, account sign-in and all creative-app export paths need release acceptance. Start with a disposable VM; physical-hardware installation is not supported by this preview.
 
 ## Maintainers
 
-The private source repository contains the automated Debian 13 live-build workflow. Build run 40374303793 produced the image from source f06555ca6613db653b36d195c6c1f5e2608e6a81. The build uses a disposable privileged Debian container on a GitHub runner. Package inventories are staged inside the image; retain the original build log alongside release evidence.
+The private source repository contains the automated Debian 13 live-build workflow. Build run 40430362637 produced the image from source f7622b2443fa2fef10fbf494191ad6c75012de29. The build uses a disposable privileged Debian container on a GitHub runner. Package inventories are staged inside the image; retain the original build log alongside release evidence.
